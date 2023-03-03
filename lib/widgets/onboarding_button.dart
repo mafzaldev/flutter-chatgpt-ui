@@ -1,3 +1,4 @@
+import 'package:chatgpt_app_ui/screens/chat_screen.dart';
 import 'package:chatgpt_app_ui/utils/app_styles.dart';
 import 'package:chatgpt_app_ui/utils/responsive.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,8 @@ class OnBoardingButton extends StatelessWidget {
     SizeConfig().init(context);
     return InkWell(
       onTap: () {
-        //   Navigator.pushReplacement(
-        //       context, MaterialPageRoute(builder: (context) => const OnBoarding()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Chat()));
       },
       child: Container(
         height: 50,

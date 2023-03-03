@@ -3,18 +3,32 @@ import 'package:chatgpt_app_ui/utils/responsive.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/data.dart';
+import '../widgets/getting_started_tips_builder.dart';
 import '../widgets/input_field.dart';
 import '../widgets/message_bubble.dart';
 
-class Chat extends StatelessWidget {
+class Chat extends StatefulWidget {
   const Chat({super.key});
+
+  @override
+  State<Chat> createState() => _ChatState();
+}
+
+class _ChatState extends State<Chat> {
+  bool showSteps = true;
+
+  void _toggleSteps() {
+    setState(() {
+      showSteps = !showSteps;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: cWhite,
-      appBar: _buildChatScreenAppBar(),
+      appBar: _buildChatScreenAppBar(_toggleSteps),
       body: Stack(children: [
         SizedBox(height: SizeConfig.horizontalBlockSize! * 2),
         const Divider(
@@ -27,23 +41,24 @@ class Chat extends StatelessWidget {
               vertical: SizeConfig.verticalBlockSize! * 3),
           //main content goes here
 
-          // child: const GettingStartedTipsBuilder(),
-          child: ListView.builder(
-            itemCount: chatMessages.length,
-            itemBuilder: (context, index) {
-              return MessageBubble(
-                message: chatMessages[index]["message"].toString(),
-                isMe: chatMessages[index]["isMe"],
-              );
-            },
-          ),
+          child: showSteps
+              ? const GettingStartedTipsBuilder()
+              : ListView.builder(
+                  itemCount: chatMessages.length,
+                  itemBuilder: (context, index) {
+                    return MessageBubble(
+                      message: chatMessages[index]["message"].toString(),
+                      isMe: chatMessages[index]["isMe"],
+                    );
+                  },
+                ),
         ),
         const InputField()
       ]),
     );
   }
 
-  AppBar _buildChatScreenAppBar() {
+  AppBar _buildChatScreenAppBar(Function toggleSteps) {
     return AppBar(
       elevation: 0,
       backgroundColor: cWhite,
@@ -52,7 +67,7 @@ class Chat extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             IconButton(
-                onPressed: () {},
+                onPressed: _toggleSteps,
                 icon: const Icon(
                   Icons.arrow_back,
                   color: cBlack,
@@ -60,7 +75,7 @@ class Chat extends StatelessWidget {
             Image.asset('assets/avatar.png'),
             SizedBox(width: SizeConfig.horizontalBlockSize! * 3),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('John Doe',
+              Text('ChatGPT',
                   style: cBold.copyWith(
                     color: cPrimaryBlue,
                     fontSize: 20,
