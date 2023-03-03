@@ -9,7 +9,10 @@ class OnBoardingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        //   Navigator.pushReplacement(
+        //       context, MaterialPageRoute(builder: (context) => const OnBoarding()));
+      },
       child: Container(
         height: 50,
         width: double.infinity,

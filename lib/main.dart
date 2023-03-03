@@ -1,4 +1,4 @@
-import 'package:chatgpt_app_ui/screens/onboarding_screen.dart';
+import 'package:chatgpt_app_ui/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SafeArea(child: OnBoarding()),
+      home: const SafeArea(child: Chat()),
     );
   }
 }
