@@ -12,7 +12,7 @@ class InputField extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
         margin: const EdgeInsets.only(bottom: 20, right: 10, left: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         decoration: BoxDecoration(
           color: cWhite,
           boxShadow: const [
@@ -31,7 +31,8 @@ class InputField extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                     hintText: "Hello chatGPT, how are you today ?",
-                    hintStyle: TextStyle(color: cPrimaryBlue.withOpacity(0.5)),
+                    hintStyle: cSemiBold.copyWith(
+                        color: cPrimaryBlue.withOpacity(0.5)),
                     border: InputBorder.none),
               ),
             ),
